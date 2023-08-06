@@ -10,7 +10,7 @@ java spring 학습
 
 ### 강한 결합
 
-[example](./src/main/java/com/precisionbio/learnspringframework/GameRunner.java)
+[example](./src/main/java/com/precisionbio/learnspringframework/game/tightcoupling//GameRunner.java)
 
 -   실 예시
 -   자동차와 엔진 > 바꾸기 어렵고 교체 시 비용이 많이 발생

@@ -1,4 +1,4 @@
-package com.precisionbio.learnspringframework;
+package com.precisionbio.learnspringframework.game.tightcoupling;
 
 public class AppGamingBasic {
     public static void main(String[] args) {

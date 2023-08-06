@@ -1,4 +1,4 @@
-package com.precisionbio.learnspringframework;
+package com.precisionbio.learnspringframework.game.tightcoupling;
 
 /**
  * Game Runner - 강한 결합

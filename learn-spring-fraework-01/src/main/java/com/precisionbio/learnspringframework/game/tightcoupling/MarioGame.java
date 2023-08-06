@@ -1,4 +1,4 @@
-package com.precisionbio.learnspringframework;
+package com.precisionbio.learnspringframework.game.tightcoupling;
 
 public class MarioGame {
     public void up() {
