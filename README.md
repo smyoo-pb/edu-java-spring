@@ -4,11 +4,7 @@ java spring 학습
 
 ## history
 
-### section 2
-
-
--   java 기본
-    -   객체 지향
+### [section 2](./learn-spring-fraework-01/README.md)
 
 ### section 1
 
