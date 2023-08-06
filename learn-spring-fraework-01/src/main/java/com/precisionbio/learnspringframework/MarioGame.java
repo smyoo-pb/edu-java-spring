@@ -1,4 +1,4 @@
-package com.precisionbio.learnspringfraework;
+package com.precisionbio.learnspringframework;
 
 public class MarioGame {
     public void up() {

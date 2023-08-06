@@ -1,12 +1,12 @@
-package com.precisionbio.learnspringfraework;
+package com.precisionbio.learnspringframework;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LearnSpringFraeworkApplication {
+public class LearnSpringFrameworkApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LearnSpringFraeworkApplication.class, args);
+		SpringApplication.run(LearnSpringFrameworkApplication.class, args);
 	}
 }
