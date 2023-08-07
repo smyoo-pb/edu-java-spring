@@ -1,5 +1,6 @@
 package com.precisionbio.learnspringframework.game.looselycoupling;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,15 +19,11 @@ public class GameRunner {
     GamingConsole game;
 
     /**
-     * Game Runner 생성자
-     * MarioGame 클래스의 인스턴스를 멤버로 받는다.
-     * GameRunner 클래스의 코드 수정 없이는
-     * 다른 유사한 유형의 게임을 실행 시킬 수 없는 MarioGame 전용 Runner가 된다.
-     * 이러한 클래스들의 관계를 강한 결합을 가진다고 한다.
+     * Qualifier 어노테이션을 활용하여 주입할 객체를 선택할 수 있다.
      * 
      * @param game
      */
-    public GameRunner(GamingConsole game) {
+    public GameRunner(@Qualifier("PacMan") GamingConsole game) {
         this.game = game;
     }
 
