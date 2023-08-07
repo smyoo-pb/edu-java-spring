@@ -61,3 +61,54 @@ java spring 학습
 
 -   **Autowiring**: Spring이 Spring Bean에게 필요한 의존성이 무엇인지 식별하고 자동으로 주입해주는 것을 뜻한다.
     -   ex) 생성자에 필요한 파라미터 클래스 식별 → 일치하는 Spring Bean 탐색 → 주입
+
+### 의존성이 발생하는 이유?
+
+-   복잡한 비즈니스 로직을 구현하기 위해서
+-   여러 개의 계층으로 나뉘게 되고 각 계층 끼리 상호작용이 필요하게 되는데 이 때 특정 계층에 의존하는 경우가 생길 수 밖에 없다.
+-   일종의 인과 관계?
+
+### Real World Java Spring Framework Example 솔루션
+
+[example](./src/main/java/com/precisionbio/learnspringframework/example/c1/RealWorldSpringContextLauncherApplication.java)
+
+### section2 복습
+
+-   coupling(결합도)
+    -   가능한 낮은 결합도 유지
+-   Java Interface
+    -   낮은 결합도 유지를 위해 interface를 구현하는 방식으로 개발
+-   Spring Container
+    -   Spring IOC Container
+    -   Applicatoin Context
+    -   Spring Bean
+-   Java Bean vs Spring Bean
+-   Dependency Injection
+    -   의존성 주입
+    -   외부(Spring Framework)에서 의존성을 주입 시키자
+-   DI Types
+    -   생성자 주입
+    -   Setter 주입
+    -   Field 주입
+-   Annotations
+    -   Configuration
+    -   CompnentScan
+    -   Bean vs Component
+    -   Qualifier vs Primary
+
+### Next Section Preview
+
+1. Lazy initalization - 지연 초기화
+2. Bean Scopes - 다양한 Spring Bean의 범위
+    - Prototype
+    - Singleton
+3. PostConstruct & PreDestory - 생성 후, 소멸 전 작업이 필요할 경우?
+4. Jakarta EE - Java 역사 시간
+5. Contexts & DI
+6. XML Configuration - XML 설정, Java 설정과의 차이점
+7. Alternatives - @Component
+    - 컴포넌트와 관련된 여러 대안들
+    - @Service, @Repository
+8. Spring Big Picture
+9. Spring Modules & Projects
+10. Why is Spring Popular?
