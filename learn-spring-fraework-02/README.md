@@ -112,3 +112,51 @@ java spring 학습
 8. Spring Big Picture
 9. Spring Modules & Projects
 10. Why is Spring Popular?
+
+# section 4
+
+## Initailization
+
+-   Default: Eager(즉시)
+    -   즉시 초기화를 추천
+    -   애플리케이션 시작 때 오류를 발견할 수 있다.
+-   Lazy: 호출 시, 초기화
+    -   자주 사용되지 않는다.
+    -   존재한다는 것만 알아두자..
+    -   필요할 때 초기화 하기 때문에 메모리 가 비교적 적게 소비 될 수 있다.
+    -   Bean을 자주 사용하지 않는 경우 유용할 수 있음
+
+## Prototype & Singleton
+
+-   Singleton: 항상 하나의 인스턴스를 반환한다. Spring IoC 컨테이너에서 하나의 인스턴스를 생성하여 가지고 있다가 호출 시 가지고 있던 인스턴스를 반환한다.
+
+-   Prototype: 항상 새로운 인스턴스를 반환 한다. Spring IoC 컨테이너에서 호출 할 때 마다 새로 생성한다.
+
+-   Scopes apllicable Only for web-aware Spring Application Context
+    -   Request: Singleton
+    -   Session: Singleton
+    -   Application: Singleton
+    -   Websocket: Singleton
+
+### Java Singleton (GOF) vs Spring Singleton
+
+-   Spring Singleton: Spring IoC Container를 기준으로 하나의 컨테이너 당 하나의 객체 인스턴스
+-   Java Singleton: JVM기준으로 JVM당 하나의 객체 인스턴스
+
+-   간단한 설명:
+    -   JVM 1개, Spring IoC 1개
+        -   같은 의미
+    -   JVM 2개, Spring IoC 1개
+        -   Java Singleton은 2개 객체
+        -   Spring Sinleton은 1개 객체
+    -   JVM 1개, Spring IoC 2개
+        -   Java Singleton은 1개 객체
+        -   Spring Sinleton은 2개 객체
+-   But, 99.99% JVM == Spring IoC
+
+    -   JVM 한개당 하나의 Spring을 실행함.
+
+## PostConstruct & PreDestory
+
+-   PostConstruct: 생성자 초기화 이후 실행되는 메서드
+-   PreDestory: 객체 소멸 전에 실행되는 메서드
