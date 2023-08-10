@@ -160,3 +160,26 @@ java spring 학습
 
 -   PostConstruct: 생성자 초기화 이후 실행되는 메서드
 -   PreDestory: 객체 소멸 전에 실행되는 메서드
+
+## Jakarta EE vs J2EE vs Java EE
+
+-   J2EE - java 2 Platform enterprise edition
+-   Java EE - java Platform enterprise edition (Rebranding)
+-   Jakarta EE (Oracla -> Eclipse Foundation)
+    -   JSP
+    -   JSTL
+    -   EJB
+    -   Jakarta RESTful Web Services (JAX-RS)
+    -   Jakarta Bean Validation
+    -   Jakarta Contexts and Dependency Injection
+    -   Jakarta Persitence (JPA)
+
+## Jakarata Contexts & Dependency Injection
+
+    - CDI is interface
+    - important annotation
+        - @Inject -> @Autowired 대체 가능
+        - @Named -> @Component 대체 가능
+        - @Qualifier
+        - @Scope
+        - @Singleton
