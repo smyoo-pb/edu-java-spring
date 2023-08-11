@@ -183,3 +183,35 @@ java spring 학습
         - @Qualifier
         - @Scope
         - @Singleton
+
+## XML Configuration vs Annotation Configuration
+
+### xml
+
+-   사용법이 어렵다.
+-   문법이 복잡하다.
+-   java 소스코드가 깔끔함
+-   유지보수가 어렵다.
+    -   같은 일은 두번해야 한다.
+-   관리가 어렵다.
+
+### annotation
+
+-   사용법이 쉽다.
+-   문법이 간결하다.
+-   java class에 어노테이션을 추가 하기 때문에 자바 소스르 건드려야 한다.
+-   유지보수가 쉽다.
+-   관리가 쉽다.
+
+## Spring Stereotype Annotations
+
+-   @Component - Generic annotation applicable for any class
+    -   모든 클래스에 사용가능한 generic 어노테이션
+-   @Service - 비스니스 로직을 구현하는 클래스에 사용가능한 generic 어노테이션
+-   @Repository - 데이터베이스 로직을 구현하는 클래스에 사용가능한 generic 어노테이션
+-   @Controller - 웹 로직을 구현하는 클래스에 사용가능한 generic 어노테이션
+
+### Why?
+
+-   구체적인 역할을 명시 하는 역할
+-   구체적인 역할을 명시하여 프레임워크의 도움을 적극적을 받을 수 있다.
