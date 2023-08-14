@@ -112,3 +112,106 @@ java spring 학습
 8. Spring Big Picture
 9. Spring Modules & Projects
 10. Why is Spring Popular?
+
+# section 4
+
+## Initailization
+
+-   Default: Eager(즉시)
+    -   즉시 초기화를 추천
+    -   애플리케이션 시작 때 오류를 발견할 수 있다.
+-   Lazy: 호출 시, 초기화
+    -   자주 사용되지 않는다.
+    -   존재한다는 것만 알아두자..
+    -   필요할 때 초기화 하기 때문에 메모리 가 비교적 적게 소비 될 수 있다.
+    -   Bean을 자주 사용하지 않는 경우 유용할 수 있음
+
+## Prototype & Singleton
+
+-   Singleton: 항상 하나의 인스턴스를 반환한다. Spring IoC 컨테이너에서 하나의 인스턴스를 생성하여 가지고 있다가 호출 시 가지고 있던 인스턴스를 반환한다.
+
+-   Prototype: 항상 새로운 인스턴스를 반환 한다. Spring IoC 컨테이너에서 호출 할 때 마다 새로 생성한다.
+
+-   Scopes apllicable Only for web-aware Spring Application Context
+    -   Request: Singleton
+    -   Session: Singleton
+    -   Application: Singleton
+    -   Websocket: Singleton
+
+### Java Singleton (GOF) vs Spring Singleton
+
+-   Spring Singleton: Spring IoC Container를 기준으로 하나의 컨테이너 당 하나의 객체 인스턴스
+-   Java Singleton: JVM기준으로 JVM당 하나의 객체 인스턴스
+
+-   간단한 설명:
+    -   JVM 1개, Spring IoC 1개
+        -   같은 의미
+    -   JVM 2개, Spring IoC 1개
+        -   Java Singleton은 2개 객체
+        -   Spring Sinleton은 1개 객체
+    -   JVM 1개, Spring IoC 2개
+        -   Java Singleton은 1개 객체
+        -   Spring Sinleton은 2개 객체
+-   But, 99.99% JVM == Spring IoC
+
+    -   JVM 한개당 하나의 Spring을 실행함.
+
+## PostConstruct & PreDestory
+
+-   PostConstruct: 생성자 초기화 이후 실행되는 메서드
+-   PreDestory: 객체 소멸 전에 실행되는 메서드
+
+## Jakarta EE vs J2EE vs Java EE
+
+-   J2EE - java 2 Platform enterprise edition
+-   Java EE - java Platform enterprise edition (Rebranding)
+-   Jakarta EE (Oracla -> Eclipse Foundation)
+    -   JSP
+    -   JSTL
+    -   EJB
+    -   Jakarta RESTful Web Services (JAX-RS)
+    -   Jakarta Bean Validation
+    -   Jakarta Contexts and Dependency Injection
+    -   Jakarta Persitence (JPA)
+
+## Jakarata Contexts & Dependency Injection
+
+    - CDI is interface
+    - important annotation
+        - @Inject -> @Autowired 대체 가능
+        - @Named -> @Component 대체 가능
+        - @Qualifier
+        - @Scope
+        - @Singleton
+
+## XML Configuration vs Annotation Configuration
+
+### xml
+
+-   사용법이 어렵다.
+-   문법이 복잡하다.
+-   java 소스코드가 깔끔함
+-   유지보수가 어렵다.
+    -   같은 일은 두번해야 한다.
+-   관리가 어렵다.
+
+### annotation
+
+-   사용법이 쉽다.
+-   문법이 간결하다.
+-   java class에 어노테이션을 추가 하기 때문에 자바 소스르 건드려야 한다.
+-   유지보수가 쉽다.
+-   관리가 쉽다.
+
+## Spring Stereotype Annotations
+
+-   @Component - Generic annotation applicable for any class
+    -   모든 클래스에 사용가능한 generic 어노테이션
+-   @Service - 비스니스 로직을 구현하는 클래스에 사용가능한 generic 어노테이션
+-   @Repository - 데이터베이스 로직을 구현하는 클래스에 사용가능한 generic 어노테이션
+-   @Controller - 웹 로직을 구현하는 클래스에 사용가능한 generic 어노테이션
+
+### Why?
+
+-   구체적인 역할을 명시 하는 역할
+-   구체적인 역할을 명시하여 프레임워크의 도움을 적극적을 받을 수 있다.
