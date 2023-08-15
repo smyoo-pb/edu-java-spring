@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "LearnJpaAndHibernateApplication",
+            "request": "launch",
+            "mainClass": "com.precisionbio.learnjpaandhibernate.LearnJpaAndHibernateApplication"
+        },
+        {
+            "type": "java",
             "name": "Run with AppMap",
             "request": "launch",
             "mainClass": "",
