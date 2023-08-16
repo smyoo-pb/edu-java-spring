@@ -29,3 +29,13 @@ spring.h2.console.enabled=true
     -   Select의 경우 queryForObject(SQL, new BeanPropertyRowMapper<>(Course.class), id) 메서드 활용
 
 ## JPA
+
+-   @Entity: 엔티티를 정의한다.
+    -   JPA가 식별 가능하도록 Entity객체를 명시
+    -   @Id, @Column 등의 어노테이션을 이용하여 스키마에 대한 정보를 정의할 수 있다.
+-   @Repository
+
+### JPA, Hibernate
+
+-   JPA는 인터페이스
+-   Hibernate는 구현체
