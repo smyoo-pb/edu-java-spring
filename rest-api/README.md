@@ -99,3 +99,10 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
 
 -   @DeleteMapping: delete 메서드에 대한 라우팅 처리
 -   no content: 삭제에 성공할 경우 void로 응답 하는 것이 일반적이다.
+
+### REST API - Validation error (400: Bad Request)
+
+-   dependency: spring-boot-starter-validation
+-   @Valid 어노테이션을 사용하여 유효성 검사를 명시
+-   @RequestBody 어노테이션을 사용한 클래스에 유효한 validation 어노테이션을 추가
+-   jakarta.validation.constraints.\*: SpringBoot에서 기본으로 제공하는 유효성 검사 규칙 어노테이션 패키지

@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "RestfulWebServicesApplication",
+            "request": "launch",
+            "mainClass": "com.precisionbio.restfulwebservices.RestfulWebServicesApplication",
+            "projectName": "restful-web-services"
+        },
+        {
+            "type": "java",
+            "name": "Run with AppMap",
+            "request": "launch",
+            "mainClass": "",
+            "vmArgs": "-javaagent:${userHome}/.appmap/lib/java/appmap.jar"
+        }
+    ]
+}
