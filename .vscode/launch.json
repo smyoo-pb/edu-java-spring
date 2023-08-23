@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "RestfulWebServicesApplication",
+            "request": "launch",
+            "mainClass": "com.precisionbio.restfulwebservices.RestfulWebServicesApplication",
+            "projectName": "restful-web-services"
+        },
+        {
+            "type": "java",
             "name": "LearnJpaAndHibernateApplication",
             "request": "launch",
             "mainClass": "com.precisionbio.learnjpaandhibernate.LearnJpaAndHibernateApplication"

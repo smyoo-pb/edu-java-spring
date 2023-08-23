@@ -73,3 +73,29 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
     -   GetMpping과 마찬가지로 경로만 지정 해주면 된다.
 -   @RequestBody
     -   요청 본문(JSON Body)를 Object로 변환하기 위한 어노테이션이다.
+-   Response Header: Location
+    -   생성한 리소스의 API end point를 표기해주는 것이 좋다.
+    ```java
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(createdUser.getId())
+                .toUri();
+    ```
+
+### 404 Resource Not Found 예외 구현 하기
+
+-   RuntimeException 을 상속 받아 구현
+-   @ResponseStatus 어노테이션으로 http status 설정
+-   요청이 json이면 json을 응답한다.
+-   브라우저에서 요청하면 http response로 응답한다.
+
+### 모든 리소스를 대상으로 예외 처리 구현하기
+
+-   ResponseEntityExceptionHandler 상속 필요
+-   @ControllerAdvice: 에외를 이 어노테이셔이 있는 에러 핸들러로 처리할 수 있게 해준다.
+-   @ExceptionHandler(Exception.class) 어노테이션을 이용하여 원하는 exception 클래스를 넣고 메서드를 만들어 주면 해당 exception에 대한 별도의 예외 처리를 해줄 수 있다.
+
+### DELETE 메서드로 삭제 구현하기
+
+-   @DeleteMapping: delete 메서드에 대한 라우팅 처리
+-   no content: 삭제에 성공할 경우 void로 응답 하는 것이 일반적이다.
