@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,7 +28,7 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ErrorDetails> handleAllException(Exception ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(
-                LocalDate.now(),
+                LocalDateTime.now(),
                 ex.getMessage());
         return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -39,7 +38,7 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
         List<String> details = new ArrayList<>();
         details.add(request.getDescription(false));
         ErrorDetails errorDetails = new ErrorDetails(
-                LocalDate.now(),
+                LocalDateTime.now(),
                 ex.getMessage());
         return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
     }

@@ -106,3 +106,28 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
 -   @Valid 어노테이션을 사용하여 유효성 검사를 명시
 -   @RequestBody 어노테이션을 사용한 클래스에 유효한 validation 어노테이션을 추가
 -   jakarta.validation.constraints.\*: SpringBoot에서 기본으로 제공하는 유효성 검사 규칙 어노테이션 패키지
+
+## Advanced REST API Features
+
+-   Documentation
+-   Internationalization - i18n
+-   Versioning
+-   HEATEOAS
+-   Static Filtering
+-   Dynamic Filtering
+-   Monitoring
+
+### REST API Dcoumentation
+
+-   Swagger Doc
+    -   API 문서와 코드 동기화를 코드에 문서를 작성한다.
+    -   endpoint, path, parameter, response 등은 대부분 자동화 된다.
+    -   설명이나 예외 처리 정도만 작성해주기 때문에 심플하다.
+
+### i18n
+
+-   spring boot default i18n messages properties
+-   resources/message.properties 생성
+-   MessageSource 객체 생성
+    -   getMessage() 메서드를 통해 essage.properties 파일에 지정한 키 값으로 i18n 메시지를 가져올 수 있다.
+-   Accept-Language 헤더를 사용
