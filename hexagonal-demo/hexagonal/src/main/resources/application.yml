@@ -1,0 +1,17 @@
+spring:
+    h2:
+        console:
+            enabled: true
+    datasource:
+        url: jdbc:h2:mem:testdb
+        username: sa
+        password: pass
+        driverClassName: org.h2.Driver
+logging:
+    level:
+        "[org.springframework.web]": debug
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"

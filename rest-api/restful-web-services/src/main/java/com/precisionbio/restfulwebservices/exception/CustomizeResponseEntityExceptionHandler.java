@@ -1,6 +1,5 @@
 package com.precisionbio.restfulwebservices.exception;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,4 +64,13 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
         return new ResponseEntity<Object>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ForbiddenErrorException.class)
+    public final ResponseEntity<ErrorDetails> handleForbiddenErrorException(Exception ex, WebRequest request) {
+        List<String> details = new ArrayList<>();
+        details.add(request.getDescription(false));
+        ErrorDetails errorDetails = new ErrorDetails(
+                LocalDateTime.now(),
+                ex.getMessage());
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.FORBIDDEN);
+    }
 }
