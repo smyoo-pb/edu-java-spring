@@ -1,4 +1,4 @@
-package com.example.hexagonal.infrastructure.config;
+package com.example.hexagonal.infrastructure.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.example.hexagonal.users.application.port.in;
+package com.example.hexagonal.users.application.port.in.query;
 
 import com.example.hexagonal.users.domain.User;
 

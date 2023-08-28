@@ -19,13 +19,13 @@ import com.example.hexagonal.users.adapter.in.rest.request.UserCreateRequest;
 import com.example.hexagonal.users.adapter.in.rest.request.UserUpdateRequest;
 import com.example.hexagonal.users.adapter.in.rest.response.UserCreateResponse;
 import com.example.hexagonal.users.adapter.in.rest.response.UserResponse;
-import com.example.hexagonal.users.application.port.in.UserCreateCommand;
-import com.example.hexagonal.users.application.port.in.UserCreateUseCase;
-import com.example.hexagonal.users.application.port.in.UserDeleteUseCase;
-import com.example.hexagonal.users.application.port.in.UserFindAllQuery;
-import com.example.hexagonal.users.application.port.in.UserFindQuery;
-import com.example.hexagonal.users.application.port.in.UserUpdateCommand;
-import com.example.hexagonal.users.application.port.in.UserUpdateUseCase;
+import com.example.hexagonal.users.application.port.in.query.UserFindAllQuery;
+import com.example.hexagonal.users.application.port.in.query.UserFindQuery;
+import com.example.hexagonal.users.application.port.in.usecase.UserCreateCommand;
+import com.example.hexagonal.users.application.port.in.usecase.UserCreateUseCase;
+import com.example.hexagonal.users.application.port.in.usecase.UserDeleteUseCase;
+import com.example.hexagonal.users.application.port.in.usecase.UserUpdateCommand;
+import com.example.hexagonal.users.application.port.in.usecase.UserUpdateUseCase;
 import com.example.hexagonal.users.domain.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -77,6 +77,7 @@ public class UserController {
             @RequestBody UserUpdateRequest userUpdate) {
         var command = UserUpdateCommand.builder()
                 .name(userUpdate.getName())
+                .id(id)
                 .build();
         User user = userUpdateUseCase.update(command);
         return ResponseEntity.ok().body(UserResponse.fromDomain(user));

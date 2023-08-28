@@ -10,7 +10,7 @@ import com.example.hexagonal.common.error.CommonErrorException;
  * @date 2023/08/28
  */
 public class NotFoundUserException extends CommonErrorException {
-    public NotFoundUserException(String message) {
-        super(message, CommonErrorCode.NOT_FOUND);
+    public NotFoundUserException() {
+        super(CommonErrorCode.NOT_FOUND.name(), CommonErrorCode.NOT_FOUND);
     }
 }

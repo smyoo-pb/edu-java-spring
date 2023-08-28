@@ -1,4 +1,4 @@
-package com.example.hexagonal.users.application.port.in;
+package com.example.hexagonal.users.application.port.in.usecase;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;

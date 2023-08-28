@@ -1,4 +1,4 @@
-package com.example.hexagonal.users.application.port.in;
+package com.example.hexagonal.users.application.port.in.usecase;
 
 /**
  * [description]
@@ -6,6 +6,6 @@ package com.example.hexagonal.users.application.port.in;
  * @author seongminyoo
  * @date 2023/08/28
  */
-public interface UserDeleteUserCase {
+public interface UserDeleteUseCase {
     void deleteById(Long id);
 }

@@ -8,7 +8,7 @@ spring:
         password: pass
         driverClassName: org.h2.Driver
     messages:
-        basename: lang/messages
+        basename: i18n/messages
         encoding: UTF-8
 logging:
     level:

@@ -10,7 +10,7 @@ import com.example.hexagonal.common.error.CommonErrorException;
  * @date 2023/08/27
  */
 public class AlreadyExistsUserException extends CommonErrorException {
-    public AlreadyExistsUserException(String message) {
-        super(message, CommonErrorCode.CONFLICT);
+    public AlreadyExistsUserException() {
+        super(CommonErrorCode.CONFLICT.name(), CommonErrorCode.CONFLICT);
     }
 }
