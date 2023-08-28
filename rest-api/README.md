@@ -132,6 +132,8 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
     -   getMessage() 메서드를 통해 essage.properties 파일에 지정한 키 값으로 i18n 메시지를 가져올 수 있다.
 -   Accept-Language 헤더를 사용
 
+<<<<<<< HEAD
+
 ### Versioning REST API
 
 -   URL Versioning - Twitter
@@ -174,3 +176,34 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
 #### Dependency
 
 -   spring-boot-starter-hateoas
+
+### 정적 필터링
+
+-   Serialization(직렬화): convert object to stream => 객체를 JSON으로 변환
+-   Jackson 라이브러리를 사용한다.
+    -   @JsonProperty => JSON 키에 대한 헤더
+-   응답 필드 선택
+    -   ex) password 필드 응답 제외
+    -   @JsonIgnoreProperty
+    -   @JsonIgnoreProperties
+
+### 동적 필터링
+
+-   @JsonFilter: JSON 키에 대한 필터를 설정
+-   MappingJacksonValue: Jackson 라이브러리를 사용하여 JSON 키에 대한 필터를 설정
+-   FilterProvider: 여러 유형의 필터들을 등록 하기 위한 객체
+    -   SimpleBeanPropertyFilter: 필터 로직이 직접 설정되는 객체
+
+## Monitoring
+
+> Spring Boot Actuator
+
+-   end-point: /actuator
+-   스프링 빈즈, 애플리케이션 상태 확인
+-   요청, 응답, 리소스 통계 등등
+
+## HAL Explorer
+
+-   현재 애플리케이션에 구현된 API들을 조회할 수 있다.
+
+## JPA Hibernate + H2 연동
