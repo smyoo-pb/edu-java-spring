@@ -5,9 +5,9 @@ import com.example.hexagonal.users.domain.User;
 /**
  * [description]
  *
- * @author miniyus
- * @date 2023/08/27
+ * @author seongminyoo
+ * @date 2023/08/28
  */
-public interface UserCreatePort {
-    User create(User user);
+public interface UserUpdatePort {
+    User update(User command);
 }

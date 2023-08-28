@@ -1,13 +1,15 @@
 package com.example.hexagonal.users.application.port.in;
 
+import java.util.List;
+
 import com.example.hexagonal.users.domain.User;
 
 /**
  * [description]
  *
- * @author miniyus
- * @date 2023/08/27
+ * @author seongminyoo
+ * @date 2023/08/28
  */
-public interface UserCreateUseCase {
-    User create(UserCreateCommand command);
+public interface UserFindAllQuery {
+    List<User> findAll();
 }

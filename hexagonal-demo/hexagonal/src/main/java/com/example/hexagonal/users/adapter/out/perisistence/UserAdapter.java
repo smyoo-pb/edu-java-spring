@@ -1,10 +1,15 @@
 package com.example.hexagonal.users.adapter.out.perisistence;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import com.example.hexagonal.infrastructure.entities.UserJpaEntity;
 import com.example.hexagonal.infrastructure.repositories.UserJpaRepository;
 import com.example.hexagonal.users.application.port.out.UserCreatePort;
+import com.example.hexagonal.users.application.port.out.UserDeletePort;
+import com.example.hexagonal.users.application.port.out.UserReadPort;
+import com.example.hexagonal.users.application.port.out.UserUpdatePort;
 import com.example.hexagonal.users.domain.User;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +21,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Component
 @RequiredArgsConstructor
-public class UserAdapter implements UserCreatePort {
+public class UserAdapter implements UserCreatePort, UserReadPort, UserUpdatePort, UserDeletePort {
     private final UserJpaRepository userJpaRepository;
     private final UserMapper userMapper;
 
@@ -27,12 +32,38 @@ public class UserAdapter implements UserCreatePort {
     }
 
     @Override
-    public User findByEmail(String email) {
-        UserJpaEntity entity = userJpaRepository.findByEmail(email);
-        if (entity == null) {
+    public User findById(Long id) {
+        Optional<UserJpaEntity> entity = userJpaRepository.findById(id);
+        if (entity == null || !entity.isPresent()) {
             return null;
         }
+
+        return userMapper.toDomain(entity.get());
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userMapper.toDomain(userJpaRepository.findAll());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        userJpaRepository.deleteById(id);
+    }
+
+    @Override
+    public User update(User user) {
+        UserJpaEntity entity = userJpaRepository.save(userMapper.toJpaEntity(user));
         return userMapper.toDomain(entity);
     }
 
+    @Override
+    public boolean existsByEmail(String email) {
+        return userJpaRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return userJpaRepository.existsById(id);
+    }
 }

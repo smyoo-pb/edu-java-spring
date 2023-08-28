@@ -7,9 +7,13 @@ spring:
         username: sa
         password: pass
         driverClassName: org.h2.Driver
+    messages:
+        basename: lang/messages
+        encoding: UTF-8
 logging:
     level:
         "[org.springframework.web]": debug
+        "[com.example.hexagonal]": debug
 management:
     endpoints:
         web:

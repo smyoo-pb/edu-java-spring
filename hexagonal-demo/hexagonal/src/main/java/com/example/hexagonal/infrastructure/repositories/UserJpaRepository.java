@@ -12,4 +12,8 @@ import com.example.hexagonal.infrastructure.entities.UserJpaEntity;
 public interface UserJpaRepository extends JpaRepository<UserJpaEntity, Long> {
 
     UserJpaEntity findByEmail(String email);
+
+    boolean existsByEmail(String email);
+
+    boolean existsById(Long id);
 }

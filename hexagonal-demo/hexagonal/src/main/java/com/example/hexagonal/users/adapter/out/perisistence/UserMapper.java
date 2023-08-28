@@ -1,5 +1,7 @@
 package com.example.hexagonal.users.adapter.out.perisistence;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.example.hexagonal.infrastructure.entities.UserJpaEntity;
@@ -23,5 +25,9 @@ public class UserMapper {
 
     public User toDomain(UserJpaEntity userJpaEntity) {
         return new User(userJpaEntity.getId(), userJpaEntity.getName(), userJpaEntity.getEmail());
+    }
+
+    public List<User> toDomain(List<UserJpaEntity> userJpaEntities) {
+        return userJpaEntities.stream().map(this::toDomain).toList();
     }
 }

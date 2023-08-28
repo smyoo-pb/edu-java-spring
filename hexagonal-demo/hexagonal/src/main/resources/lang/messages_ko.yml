@@ -1,0 +1,5 @@
+users:
+    read:
+        notFound: User not found
+    create:
+        exists: User already exists
