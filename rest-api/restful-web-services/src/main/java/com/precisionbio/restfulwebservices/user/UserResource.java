@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import jakarta.validation.Valid;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 
 @RestController
@@ -28,7 +29,7 @@ public class UserResource {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userDaoService.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(createdUser.getId())
@@ -37,12 +38,18 @@ public class UserResource {
     }
 
     @GetMapping("/users/{id}")
-    public User findOne(@PathVariable int id) {
+    public EntityModel<User> findOne(@PathVariable int id) {
         User user = userDaoService.findOne(id);
         if (user == null) {
             throw new UserNotFoundException("id: " + id);
         }
-        return user;
+        EntityModel<User> userEntityModel = EntityModel.of(user);
+
+        WebMvcLinkBuilder link = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).findAll());
+
+        userEntityModel.add(link.withRel("all-users"));
+
+        return userEntityModel;
     }
 
     @DeleteMapping("/users/{id}")

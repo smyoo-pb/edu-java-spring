@@ -131,3 +131,46 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
 -   MessageSource 객체 생성
     -   getMessage() 메서드를 통해 essage.properties 파일에 지정한 키 값으로 i18n 메시지를 가져올 수 있다.
 -   Accept-Language 헤더를 사용
+
+### Versioning REST API
+
+-   URL Versioning - Twitter
+    -   v1/person
+    -   v2/person
+-   Request Parameter - Amazon
+    -   person?version=1
+    -   person?version=2
+-   Header - Microsoft
+    -   persion headers=[X-API-VERSION=1]
+    -   persion headers=[X-API-VERSION=2]
+-   Media Type
+    -   persion produces=application/vnd.company.app-v1+json
+    -   persion produces=application/vnd.company.app-v2+json
+
+#### 뭐가 좋을까?
+
+**고려사항**
+
+-   URI 오염
+-   HTTP 헤더 오용
+    -   HTTP 헤더에는 관리요소가 들어가면 안된다.
+-   caching
+    -   일반적으로 URL을 기반으로 수행되기 때문에 Header를 사용할 경우 캐시가 불가능하다.
+-   브라우저를 통해 사용할 수 있는가?
+-   API 문서 작성
+    -   URL이 같고 header가 다를 경우 문서 작성이 난해해질 수 있음.
+
+**결론**: 사용하기 나름이다. 일관성 유지에 신경을 써라.
+
+-   개인적으로는 URL Versioning이 심플하고 직관적
+
+### HEATEOAS
+
+> Hypermedia as the Engine of Application State
+> 하이퍼 미디어를 애플리케이션의 상태를 관리하기 위한 매커니즘으로 사용한다.
+
+-   서버와 클라이언트 상호 작용을 위해 요청에 필요한 URI를 같이 응답하는 것
+
+#### Dependency
+
+-   spring-boot-starter-hateoas
