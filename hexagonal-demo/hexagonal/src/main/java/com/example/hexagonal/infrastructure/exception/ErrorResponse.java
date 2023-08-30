@@ -7,6 +7,17 @@ import java.util.List;
 import jakarta.annotation.Nullable;
 import lombok.Getter;
 
+/**
+ * 
+ * Error Response for REST API
+ * - timestamp: responsed at
+ * - error: error summary
+ * - message: error description
+ * - details: error details
+ * 
+ * @author miniyus
+ * @date 2023/08/30
+ */
 @Getter
 public class ErrorResponse {
     private LocalDateTime timestamp;

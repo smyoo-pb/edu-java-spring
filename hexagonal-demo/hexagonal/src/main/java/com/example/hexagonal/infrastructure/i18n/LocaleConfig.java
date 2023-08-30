@@ -9,13 +9,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 /**
- * [description]
- *
+ * Locale Configuration
+ * - get locale from Accept-Language header
+ * - default KOREA
+ * 
  * @author miniyus
  * @date 2023/08/28
  */
 @Configuration
 public class LocaleConfig implements WebMvcConfigurer {
+    /**
+     * Creates and returns a LocaleResolver bean.
+     *
+     * @return the LocaleResolver bean
+     */
     @Bean
     public LocaleResolver localeResolver() {
         var localeResolver = new AcceptHeaderLocaleResolver();

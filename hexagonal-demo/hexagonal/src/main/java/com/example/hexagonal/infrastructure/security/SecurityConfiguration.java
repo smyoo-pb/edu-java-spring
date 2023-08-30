@@ -22,6 +22,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                         .anyRequest().permitAll())
+                .formLogin(form -> form.disable())
+                .oauth2Login(
+                    oauth2Login -> oauth2Login.userInfoEndpoint(
+                        userInfoEndpoint -> userInfoEndpoint.userService(null))
                 .headers(headers -> headers.frameOptions(opt -> opt.disable()))
                 .csrf(csrf -> csrf
                         .disable());
