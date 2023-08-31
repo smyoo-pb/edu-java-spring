@@ -20,27 +20,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Profile Entity for JPA
+ * [description]
  *
- * @author miniyus
- * @date 2023/08/30
+ * @author seongminyoo
+ * @date 2023/08/31
  */
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE profile SET deleted_at = NOW() WHERE id = ?")
-@Table(name = "profile")
-public class ProfileJpaEntity {
+@SQLDelete(sql = "UPDATE pet_profile SET deleted_at = NOW() WHERE id = ?")
+@Table(name = "pet_profile")
+public class PetProfileJpaEntity {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    private String email;
+    private String species;
+    private String breeds;
     private LocalDate birth;
     private String gender;
-    private String nickname;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate

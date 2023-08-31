@@ -1,4 +1,4 @@
-package com.example.hexagonal.common.port;
+package com.example.hexagonal.common.auth.port;
 
 /**
  * [description]

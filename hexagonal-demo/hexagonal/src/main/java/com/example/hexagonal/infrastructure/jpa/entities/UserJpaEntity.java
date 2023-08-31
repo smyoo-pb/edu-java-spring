@@ -1,6 +1,7 @@
 package com.example.hexagonal.infrastructure.jpa.entities;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -8,8 +9,10 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,10 +41,20 @@ public class UserJpaEntity {
     private String snsId;
     private String email;
     private String provider;
-    private String ip;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
+
+    // Relationships
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Collection<AccessTokenJpaEntity> accessTokens;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Collection<ProfileJpaEntity> profiles;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Collection<PetProfileJpaEntity> petProfiles;
+
 }

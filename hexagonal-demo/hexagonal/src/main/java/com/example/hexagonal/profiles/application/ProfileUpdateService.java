@@ -8,7 +8,6 @@ import com.example.hexagonal.profiles.application.port.in.usecase.ProfileUpdateU
 import com.example.hexagonal.profiles.application.port.out.ProfileReadPort;
 import com.example.hexagonal.profiles.application.port.out.ProfileUpdatePort;
 import com.example.hexagonal.profiles.domain.Profile;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -39,9 +38,25 @@ public class ProfileUpdateService implements ProfileUpdateUseCase {
             throw new NotFoundProfileException();
         }
 
-        return userUpdatePort.update(new Profile(
+        var profile = new Profile(
                 exists.getId(),
+                exists.getUserId(),
+                exists.getName(),
+                exists.getBirth(),
+                exists.getGender(),
+                exists.getEmail(),
+                exists.getNickname(),
+                exists.getCreatedAt(),
+                exists.getUpdatedAt(),
+                exists.getDeletedAt());
+
+        profile.update(
                 command.getName(),
-                exists.getEmail()));
+                command.getBirth(),
+                command.getGender(),
+                command.getEmail(),
+                command.getNickname());
+
+        return userUpdatePort.update(profile);
     }
 }

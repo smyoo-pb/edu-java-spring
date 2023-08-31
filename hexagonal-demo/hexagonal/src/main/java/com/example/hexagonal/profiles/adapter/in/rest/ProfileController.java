@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import com.example.hexagonal.profiles.adapter.in.rest.request.ProfileCreateRequest;
 import com.example.hexagonal.profiles.adapter.in.rest.request.ProfileUpdateRequest;
 import com.example.hexagonal.profiles.adapter.in.rest.response.ProfileCreateResponse;

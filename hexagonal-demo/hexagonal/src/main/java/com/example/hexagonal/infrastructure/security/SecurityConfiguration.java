@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Spring Security Configuration
@@ -15,20 +16,24 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  */
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfiguration {
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                        .anyRequest().permitAll())
-                .formLogin(form -> form.disable())
-                .oauth2Login(
-                    oauth2Login -> oauth2Login.userInfoEndpoint(
-                        userInfoEndpoint -> userInfoEndpoint.userService(null))
-                .headers(headers -> headers.frameOptions(opt -> opt.disable()))
-                .csrf(csrf -> csrf
-                        .disable());
-        return http.build();
-    }
+	private final PrincipalUserService userService;
+
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests(auth -> auth
+				.requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+				.anyRequest().permitAll());
+		http.formLogin(form -> form.disable());
+		http.oauth2Login(oauth2Login -> oauth2Login
+				.loginPage("/v1/auth/login")
+				.authorizationEndpoint(authorization -> authorization
+						.baseUri("/oauth2/authorization"))
+				.userInfoEndpoint(userInfoEndpoint -> userInfoEndpoint
+						.userService(userService)));
+		http.headers(headers -> headers.frameOptions(opt -> opt.disable()));
+		http.csrf(csrf -> csrf.disable());
+		return http.build();
+	}
 }

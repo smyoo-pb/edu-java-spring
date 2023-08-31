@@ -1,36 +1,29 @@
 package com.example.hexagonal.infrastructure.security.userInfo;
 
+import java.util.Map;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
  * [description]
  *
  * @author miniyus
  * @date 2023/08/31
  */
+@Builder
+@Getter
+@RequiredArgsConstructor
 public class NaverUserInfo implements OAuth2UserInfo {
-    private final OAuthAttributes attributes;
-
-    public NaverUserInfo(OAuthAttributes attributes) {
-        this.attributes = attributes;
-    }
-
-    @Override
-    public String getSnsId() {
-        return attributes.getId();
-    }
+    private final String snsId;
+    private final String email;
+    private final String app;
+    private final String name;
+    private final Map<String, Object> attributes;
 
     @Override
-    public String getProvider() {
-        return "naver";
+    public OAuth2Provider getProvider() {
+        return OAuth2Provider.NAVER;
     }
-
-    @Override
-    public String getEmail() {
-        return attributes.getEmail();
-    }
-
-    @Override
-    public String getName() {
-        return attributes.getName();
-    }
-
 }

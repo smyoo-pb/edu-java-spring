@@ -1,6 +1,9 @@
 package com.example.hexagonal.infrastructure.security.userInfo;
 
 import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
 /**
  * [description]
@@ -8,32 +11,18 @@ import java.util.Map;
  * @author miniyus
  * @date 2023/08/31
  */
+@Builder
+@AllArgsConstructor
+@Getter
 public class KakaoUserInfo implements OAuth2UserInfo {
-    private String id;
-    private OAuthAttributes kakaoAccount;
-
-    public KakaoUserInfo(OAuthAttributes attributes, String id) {
-        this.kakaoAccount = attributes;
-        this.id = id;
-    }
+    private final String email;
+    private final String name;
+    private final String snsId;
+    private final String app;
+    private final Map<String, Object> attributes;
 
     @Override
-    public String getProvider() {
-        return "kakao";
-    }
-
-    @Override
-    public String getEmail() {
-        return kakaoAccount.getEmail();
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public String getSnsId() {
-        return id;
+    public OAuth2Provider getProvider() {
+        return OAuth2Provider.KAKAO;
     }
 }

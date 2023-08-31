@@ -16,8 +16,6 @@ import lombok.Value;
 public class ProfileCreateCommand {
     private String name;
     private String email;
-    private String species;
-    private String breeds;
     private LocalDate birth;
     private String gender;
     private String nickname;

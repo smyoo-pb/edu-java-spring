@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import com.example.hexagonal.profiles.domain.Profile;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -14,11 +15,11 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Getter
 public class ProfileCreateResponse {
     private Long id;
     private String name;
     private String email;
-    private String species;
     private LocalDate birth;
     private String gender;
     private String nickname;
@@ -30,7 +31,6 @@ public class ProfileCreateResponse {
                 profile.getId(),
                 profile.getName(),
                 profile.getEmail(),
-                profile.getSpecies(),
                 profile.getBirth(),
                 profile.getGender(),
                 profile.getNickname(),

@@ -1,5 +1,7 @@
 package com.example.hexagonal.profiles.adapter.in.rest.response;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.example.hexagonal.profiles.domain.Profile;
@@ -16,21 +18,27 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Getter
 public class ProfileResponse {
-    @Getter
     private Long id;
-
-    @Getter
     private String name;
-
-    @Getter
     private String email;
+    private LocalDate birth;
+    private String gender;
+    private String nickname;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public static ProfileResponse fromDomain(Profile user) {
         return new ProfileResponse(
                 user.getId(),
                 user.getName(),
-                user.getEmail());
+                user.getEmail(),
+                user.getBirth(),
+                user.getGender(),
+                user.getNickname(),
+                user.getCreatedAt(),
+                user.getUpdatedAt());
     }
 
     public static List<ProfileResponse> fromDomain(List<Profile> users) {

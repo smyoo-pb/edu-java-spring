@@ -1,5 +1,7 @@
 package com.example.hexagonal.profiles.application.port.in.usecase;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
@@ -17,4 +19,12 @@ public class ProfileUpdateCommand {
     private Long id;
     @NotNull
     private String name;
+    @NotNull
+    private String email;
+    @NotNull
+    private LocalDate birth;
+    @NotNull
+    private String gender;
+    @NotNull
+    private String nickname;
 }

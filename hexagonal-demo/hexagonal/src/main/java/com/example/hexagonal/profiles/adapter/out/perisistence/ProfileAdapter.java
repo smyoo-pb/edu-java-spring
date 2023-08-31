@@ -5,14 +5,16 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
+import com.example.hexagonal.infrastructure.jpa.entities.P;
+import com.example.hexagonal.infrastructure.jpa.entities.ProfileJpaEntity;
 import com.example.hexagonal.infrastructure.jpa.entities.UserJpaEntity;
+import com.example.hexagonal.infrastructure.jpa.repositories.ProfileJpaRepository;
 import com.example.hexagonal.infrastructure.jpa.repositories.UserJpaRepository;
 import com.example.hexagonal.profiles.application.port.out.ProfileCreatePort;
 import com.example.hexagonal.profiles.application.port.out.ProfileDeletePort;
 import com.example.hexagonal.profiles.application.port.out.ProfileReadPort;
 import com.example.hexagonal.profiles.application.port.out.ProfileUpdatePort;
 import com.example.hexagonal.profiles.domain.Profile;
-
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -24,48 +26,48 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class ProfileAdapter implements ProfileCreatePort, ProfileReadPort, ProfileUpdatePort, ProfileDeletePort {
-    private final UserJpaRepository userJpaRepository;
-    private final ProfileMapper userMapper;
+    private final ProfileJpaRepository profileJpaRepository;
+    private final ProfileMapper profileMapper;
 
     @Override
-    public Profile create(Profile user) {
-        UserJpaEntity entity = userJpaRepository.save(userMapper.toJpaEntity(user));
-        return userMapper.toDomain(entity);
+    public Profile create(Profile profile) {
+        ProfileJpaEntity entity = profileJpaRepository.save(profileMapper.toJpaEntity(profile));
+        return profileMapper.toDomain(entity);
     }
 
     @Override
     public Profile findById(Long id) {
-        Optional<UserJpaEntity> entity = userJpaRepository.findById(id);
+        Optional<ProfileJpaEntity> entity = profileJpaRepository.findById(id);
         if (entity == null || !entity.isPresent()) {
             return null;
         }
 
-        return userMapper.toDomain(entity.get());
+        return profileMapper.toDomain(entity.get());
     }
 
     @Override
     public List<Profile> findAll() {
-        return userMapper.toDomain(userJpaRepository.findAll());
+        return profileMapper.toDomain(profileJpaRepository.findAll());
     }
 
     @Override
     public void deleteById(Long id) {
-        userJpaRepository.deleteById(id);
+        profileJpaRepository.deleteById(id);
     }
 
     @Override
-    public Profile update(Profile user) {
-        UserJpaEntity entity = userJpaRepository.save(userMapper.toJpaEntity(user));
-        return userMapper.toDomain(entity);
+    public Profile update(Profile profile) {
+        ProfileJpaEntity entity = profileJpaRepository.save(profileMapper.toJpaEntity(profile));
+        return profileMapper.toDomain(entity);
     }
 
     @Override
     public boolean existsByEmail(String email) {
-        return userJpaRepository.existsByEmail(email);
+        return profileJpaRepository.existsByEmail(email);
     }
 
     @Override
     public boolean existsById(Long id) {
-        return userJpaRepository.existsById(id);
+        return profileJpaRepository.existsById(id);
     }
 }

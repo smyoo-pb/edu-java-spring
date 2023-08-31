@@ -14,13 +14,13 @@ spring:
         oauth2:
             client:
                 registration:
-                    google:
+                    google-h:
                         client-id: 431842000604-c6oc1eo91e135bnep9jr1ls06l2rhkpl.apps.googleusercontent.com
                         client-secret: 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
                         scope:
                             - email
                             - profile
-                    naver:
+                    naver-h:
                         client-id: xxx
                         client-secret: xxx
                         scope:
@@ -31,11 +31,11 @@ spring:
                         authorization-grant-type: authorization_code
                         redirect-uri: http://localhost:8880/login/oauth2/code/naver #코드를 받는 uri(naver 의 콜백 uri)
 
-                    kakao:
+                    kakao-h:
                         client-id: xxx
                         client-secret: xxx
                         scope:
-                            # - profile_nickname
+                            - profile_nickname
                             - account_email
                         client-name: Kakao
                         authorization-grant-type: authorization_code

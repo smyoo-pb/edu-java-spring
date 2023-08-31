@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * [description]
@@ -12,18 +13,32 @@ import lombok.Getter;
  * @date 2023/08/27
  */
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 public class Profile {
-    private Long id;
-    private Long userId;
-    private String app;
-    private String name;
-    private String species;
+    protected Long id;
+    protected Long userId;
+    protected String name;
+    protected LocalDate birth;
+    protected String gender;
+
     private String email;
-    private LocalDate birth;
-    private String gender;
     private String nickname;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private LocalDateTime deletedAt;
+
+    protected LocalDateTime createdAt;
+    protected LocalDateTime updatedAt;
+    protected LocalDateTime deletedAt;
+
+    public void update(
+            String name,
+            LocalDate birth,
+            String gender,
+            String email,
+            String nickname) {
+        this.name = name;
+        this.email = email;
+        this.birth = birth;
+        this.gender = gender;
+        this.nickname = nickname;
+    }
 }
