@@ -2,9 +2,6 @@ package com.example.hexagonal.profiles.pets.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import com.example.hexagonal.profiles.domain.Profile;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
