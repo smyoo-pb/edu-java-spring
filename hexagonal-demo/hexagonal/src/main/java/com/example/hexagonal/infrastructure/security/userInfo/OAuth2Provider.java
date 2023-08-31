@@ -22,6 +22,15 @@ public enum OAuth2Provider {
     }
 
     public static OAuth2Provider of(String registrationId) {
-        return OAuth2Provider.valueOf(registrationId);
+        switch (registrationId) {
+            case "google":
+                return OAuth2Provider.GOOGLE;
+            case "kakao":
+                return OAuth2Provider.KAKAO;
+            case "naver":
+                return OAuth2Provider.NAVER;
+            default:
+                throw new IllegalArgumentException(String.format("OAuthProvider: missmatch {}", registrationId));
+        }
     }
 }

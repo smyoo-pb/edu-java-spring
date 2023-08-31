@@ -1,8 +1,6 @@
 package com.example.hexagonal.profiles.application;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import com.example.hexagonal.common.auth.port.AuthPort;
 import com.example.hexagonal.profiles.application.exception.AlreadyExistsProfileException;
 import com.example.hexagonal.profiles.application.port.in.usecase.ProfileCreateCommand;
@@ -10,7 +8,6 @@ import com.example.hexagonal.profiles.application.port.in.usecase.ProfileCreateU
 import com.example.hexagonal.profiles.application.port.out.ProfileCreatePort;
 import com.example.hexagonal.profiles.application.port.out.ProfileReadPort;
 import com.example.hexagonal.profiles.domain.Profile;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -39,6 +36,7 @@ public class ProfileCreateService implements ProfileCreateUseCase {
         if (profileReadPort.existsByEmail(profile.getEmail())) {
             throw new AlreadyExistsProfileException();
         }
+
         Profile profileDomain = new Profile(
                 null,
                 authPort.getId(),
@@ -46,7 +44,6 @@ public class ProfileCreateService implements ProfileCreateUseCase {
                 profile.getBirth(),
                 profile.getGender(),
                 profile.getEmail(),
-                profile.getNickname(),
                 null,
                 null,
                 null);

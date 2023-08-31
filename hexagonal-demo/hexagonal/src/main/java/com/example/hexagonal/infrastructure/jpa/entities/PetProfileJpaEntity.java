@@ -1,12 +1,9 @@
 package com.example.hexagonal.infrastructure.jpa.entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import org.hibernate.annotations.SQLDelete;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -36,15 +33,23 @@ public class PetProfileJpaEntity {
     @Id
     @GeneratedValue
     private Long id;
+
     private String name;
+
     private String species;
+
     private String breeds;
-    private LocalDate birth;
+
+    private int birth;
+
     private String gender;
+
     @CreatedDate
     private LocalDateTime createdAt;
+
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
     private LocalDateTime deletedAt;
 
     // Relationships

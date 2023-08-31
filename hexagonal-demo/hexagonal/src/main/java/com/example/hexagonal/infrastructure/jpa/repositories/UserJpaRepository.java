@@ -12,11 +12,9 @@ import com.example.hexagonal.infrastructure.jpa.entities.UserJpaEntity;
  */
 public interface UserJpaRepository extends JpaRepository<UserJpaEntity, Long> {
 
-    UserJpaEntity findByUsername(String username);
+    UserJpaEntity findByName(String name);
 
     UserJpaEntity findBySnsId(String snsId);
-
-    UserJpaEntity findByUserJpaEntity(UserJpaEntity userJpaEntity);
 
     UserJpaEntity findBySnsIdAndProvider(String snsId, String prodiver);
 

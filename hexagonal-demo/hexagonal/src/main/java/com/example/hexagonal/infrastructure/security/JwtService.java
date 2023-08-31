@@ -34,7 +34,7 @@ public class JwtService {
 
         return new IssueTokenResponse(
                 userInfo.getUserEntity().getSnsId(),
-                userInfo.getUserInfo().getProvider(),
+                userInfo.getUserInfo().getProvider().getId(),
                 accessToken.getToken(),
                 jwtProvider.getAccessTokenExpiration(),
                 refreshToken.getToken());

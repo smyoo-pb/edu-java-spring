@@ -4,7 +4,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.example.hexagonal.common.auth.port.AuthPort;
-
+import com.example.hexagonal.common.error.AuthErrorCode;
+import com.example.hexagonal.common.error.AuthErrorException;
+import com.example.hexagonal.infrastructure.security.PrincipalUserInfo;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -17,35 +19,43 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthAdapter implements AuthPort {
 
-    private final SecurityContextHolder securityContextHolder;
+    private PrincipalUserInfo user;
 
-    @Override
-    public Long getId() {
-        securityContextHolder.getContext().getAuthentication().getPrincipal();
+    private PrincipalUserInfo getUser() {
+        if (user == null) {
+            var principal = (PrincipalUserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (principal == null) {
+                throw new AuthErrorException("", AuthErrorCode.ACCESS_DENINED);
+            }
+            user = principal;
+        }
+
+        return user;
     }
 
     @Override
-    public Long getUsername() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
+    public Long getId() {
+        return getUser().getUserEntity().getId();
+    }
+
+    @Override
+    public String getName() {
+        return getUser().getUserEntity().getName();
     }
 
     @Override
     public String getEmail() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEmail'");
+        return getUser().getUsername();
     }
 
     @Override
     public String getApp() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getApp'");
+        return getUser().getUserEntity().getApp();
     }
 
     @Override
     public String getProvider() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getProvider'");
+        return getUser().getUserEntity().getProvider();
     }
 
 }

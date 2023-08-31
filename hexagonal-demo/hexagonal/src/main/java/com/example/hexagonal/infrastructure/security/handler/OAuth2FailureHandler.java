@@ -2,15 +2,11 @@ package com.example.hexagonal.infrastructure.security.handler;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
-
 import com.example.hexagonal.common.error.AuthErrorCode;
 import com.example.hexagonal.infrastructure.exception.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.h2.api.ErrorCode;
 import org.springframework.security.core.AuthenticationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

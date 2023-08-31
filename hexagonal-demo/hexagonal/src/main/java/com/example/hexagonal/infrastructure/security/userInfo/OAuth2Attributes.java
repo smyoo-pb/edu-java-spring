@@ -2,10 +2,12 @@ package com.example.hexagonal.infrastructure.security.userInfo;
 
 import java.util.Map;
 
+import com.example.hexagonal.common.constant.AppType;
 import com.example.hexagonal.infrastructure.security.exception.NotSupportProviderException;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * [description]
@@ -15,6 +17,7 @@ import lombok.Getter;
  */
 @Getter
 @Builder
+@Slf4j
 public class OAuth2Attributes {
     private Map<String, Object> attributes;
     private String id;
@@ -27,8 +30,15 @@ public class OAuth2Attributes {
     public static OAuth2Attributes of(String registrationId, String userNameAttributeName,
             Map<String, Object> attributes) {
         String[] registration = registrationId.split("-");
-        String provider = registration[0];
-        String appType = registration[1];
+        String provider = null;
+        String appType = null;
+        if (registration.length == 1) {
+            provider = registration[0];
+            appType = AppType.HUMAN.getValue();
+        } else {
+            provider = registration[0];
+            appType = AppType.ANIMAL.getValue();
+        }
 
         if ("naver".equals(provider)) {
             var naver = ofNaver("id", attributes);
@@ -87,6 +97,7 @@ public class OAuth2Attributes {
     public OAuth2UserInfo toUserInfo() {
         try {
             OAuth2Provider provider = OAuth2Provider.of(this.provider);
+            log.debug(provider.getId());
             switch (provider) {
                 case GOOGLE:
                     return GoogleUserInfo.builder()
@@ -115,7 +126,7 @@ public class OAuth2Attributes {
                     throw new NotSupportProviderException(this.provider);
             }
         } catch (IllegalArgumentException e) {
-            throw new NotSupportProviderException(this.provider);
+            throw new NotSupportProviderException(e.getMessage() + ":" + this.provider);
         }
     }
 }

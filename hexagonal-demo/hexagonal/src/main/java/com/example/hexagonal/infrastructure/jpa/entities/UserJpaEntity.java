@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user")
+@Table(name = "user_table")
 @Where(clause = "deleted_at IS NULL")
 @SQLDelete(sql = "UPDATE user SET deleted_at = NOW() WHERE id = ?")
 public class UserJpaEntity {
@@ -39,6 +39,7 @@ public class UserJpaEntity {
     private Long id;
     private String app;
     private String snsId;
+    private String name;
     private String email;
     private String provider;
     @CreatedDate

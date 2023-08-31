@@ -1,6 +1,7 @@
 package com.example.hexagonal.infrastructure.security;
 
 import com.example.hexagonal.infrastructure.security.userInfo.OAuth2Provider;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,9 +15,18 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class IssueTokenResponse {
+    @JsonProperty("sns_id")
     private String snsId;
-    private OAuth2Provider Provider;
+
+    @JsonProperty("provider")
+    private String provider;
+
+    @JsonProperty("access_token")
     private String accessToken;
+
+    @JsonProperty("expires_in")
     private Long expiresIn;
+
+    @JsonProperty("refresh_token")
     private String refreshToken;
 }

@@ -20,7 +20,6 @@ import com.example.hexagonal.common.error.CommonErrorCode;
 import com.example.hexagonal.common.error.CommonErrorException;
 import com.example.hexagonal.profiles.application.exception.AlreadyExistsProfileException;
 import com.example.hexagonal.profiles.application.exception.NotFoundProfileException;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -153,7 +152,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorResponse errorDetails = new ErrorResponse(
                 LocalDateTime.now(),
                 errorCode.name(),
-                translateMessage("users.read.notFound"));
+                translateMessage("profiles.read.notFound"));
         return new ResponseEntity<ErrorResponse>(errorDetails, errorCode.getHttpStatus());
     }
 

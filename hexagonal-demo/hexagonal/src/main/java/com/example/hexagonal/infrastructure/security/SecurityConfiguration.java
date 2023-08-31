@@ -6,6 +6,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import com.example.hexagonal.infrastructure.security.handler.OAuth2FailureHandler;
+import com.example.hexagonal.infrastructure.security.handler.OAuth2SuccessHandler;
+
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -19,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 	private final PrincipalUserService userService;
+	private final OAuth2SuccessHandler successHandler;
+	private final OAuth2FailureHandler failureHandler;
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -31,7 +37,11 @@ public class SecurityConfiguration {
 				.authorizationEndpoint(authorization -> authorization
 						.baseUri("/oauth2/authorization"))
 				.userInfoEndpoint(userInfoEndpoint -> userInfoEndpoint
-						.userService(userService)));
+						.userService(userService))
+				.redirectionEndpoint(redirect -> redirect
+						.baseUri("/oauth2/callback/**"))
+				.successHandler(successHandler)
+				.failureHandler(failureHandler));
 		http.headers(headers -> headers.frameOptions(opt -> opt.disable()));
 		http.csrf(csrf -> csrf.disable());
 		return http.build();

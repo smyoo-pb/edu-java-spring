@@ -1,6 +1,5 @@
 package com.example.hexagonal.profiles.domain;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,29 +15,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public class Profile {
-    protected Long id;
-    protected Long userId;
-    protected String name;
-    protected LocalDate birth;
-    protected String gender;
+    private Long id;
+
+    private Long userId;
+
+    private String name;
+
+    private int birth;
+
+    private String gender;
 
     private String email;
-    private String nickname;
 
-    protected LocalDateTime createdAt;
-    protected LocalDateTime updatedAt;
-    protected LocalDateTime deletedAt;
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    private LocalDateTime deletedAt;
 
     public void update(
             String name,
-            LocalDate birth,
+            int birth,
             String gender,
-            String email,
-            String nickname) {
+            String email) {
         this.name = name;
         this.email = email;
         this.birth = birth;
         this.gender = gender;
-        this.nickname = nickname;
     }
 }

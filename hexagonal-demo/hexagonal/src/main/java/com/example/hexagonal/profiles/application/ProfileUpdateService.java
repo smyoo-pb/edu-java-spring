@@ -2,6 +2,8 @@ package com.example.hexagonal.profiles.application;
 
 import org.springframework.stereotype.Service;
 
+import com.example.hexagonal.common.auth.port.AuthPort;
+import com.example.hexagonal.profiles.application.exception.ForbiddenErrorException;
 import com.example.hexagonal.profiles.application.exception.NotFoundProfileException;
 import com.example.hexagonal.profiles.application.port.in.usecase.ProfileUpdateCommand;
 import com.example.hexagonal.profiles.application.port.in.usecase.ProfileUpdateUseCase;
@@ -23,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class ProfileUpdateService implements ProfileUpdateUseCase {
     private final ProfileReadPort userReadPort;
     private final ProfileUpdatePort userUpdatePort;
+    private final AuthPort authPort;
 
     /**
      * Updates a profile based on the given profile update command.
@@ -38,25 +41,16 @@ public class ProfileUpdateService implements ProfileUpdateUseCase {
             throw new NotFoundProfileException();
         }
 
-        var profile = new Profile(
-                exists.getId(),
-                exists.getUserId(),
-                exists.getName(),
-                exists.getBirth(),
-                exists.getGender(),
-                exists.getEmail(),
-                exists.getNickname(),
-                exists.getCreatedAt(),
-                exists.getUpdatedAt(),
-                exists.getDeletedAt());
+        if (exists.getUserId() != authPort.getId()) {
+            throw new ForbiddenErrorException();
+        }
 
-        profile.update(
+        exists.update(
                 command.getName(),
                 command.getBirth(),
                 command.getGender(),
-                command.getEmail(),
-                command.getNickname());
+                command.getEmail());
 
-        return userUpdatePort.update(profile);
+        return userUpdatePort.update(exists);
     }
 }

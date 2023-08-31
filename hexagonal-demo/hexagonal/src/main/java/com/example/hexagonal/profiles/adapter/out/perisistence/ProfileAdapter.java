@@ -5,11 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.example.hexagonal.infrastructure.jpa.entities.P;
 import com.example.hexagonal.infrastructure.jpa.entities.ProfileJpaEntity;
-import com.example.hexagonal.infrastructure.jpa.entities.UserJpaEntity;
 import com.example.hexagonal.infrastructure.jpa.repositories.ProfileJpaRepository;
-import com.example.hexagonal.infrastructure.jpa.repositories.UserJpaRepository;
 import com.example.hexagonal.profiles.application.port.out.ProfileCreatePort;
 import com.example.hexagonal.profiles.application.port.out.ProfileDeletePort;
 import com.example.hexagonal.profiles.application.port.out.ProfileReadPort;

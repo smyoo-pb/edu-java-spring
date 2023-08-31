@@ -49,9 +49,10 @@ public class PrincipalUserService implements OAuth2UserService<OAuth2UserRequest
 		if (user == null) {
 			user = UserJpaEntity.builder()
 					.snsId(providerId)
-					.provider(provider.getId())
 					.app(userInfo.getApp())
+					.name(userInfo.getName())
 					.email(userInfo.getEmail())
+					.provider(provider.getId())
 					.build();
 			userRepository.save(user);
 		}
