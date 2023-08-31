@@ -9,7 +9,7 @@ package com.example.hexagonal.common.constant;
 public enum AppType {
     HUMAN("human"),
     ANIMAL("animal"),
-    UNCHECKED(null);
+    UNDEFINED(null);
 
     private final String value;
 

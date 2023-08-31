@@ -32,7 +32,7 @@ public class OAuth2Attributes {
             Map<String, Object> attributes) {
         String[] registration = registrationId.split("-");
         String provider = registration[0];
-        String app = AppType.UNCHECKED.getValue();
+        String app = AppType.UNDEFINED.getValue();
 
         if (registration.length > 1) {
             app = registration[1];
