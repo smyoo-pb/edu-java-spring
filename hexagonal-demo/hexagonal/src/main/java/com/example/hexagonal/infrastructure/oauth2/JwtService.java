@@ -1,17 +1,16 @@
-package com.example.hexagonal.infrastructure.security;
+package com.example.hexagonal.infrastructure.oauth2;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-
 import org.springframework.stereotype.Service;
-
-import com.example.hexagonal.common.jwt.JwtProvider;
 import com.example.hexagonal.infrastructure.jpa.entities.AccessTokenJpaEntity;
 import com.example.hexagonal.infrastructure.jpa.entities.RefreshTokenJpaEntity;
 import com.example.hexagonal.infrastructure.jpa.entities.UserJpaEntity;
 import com.example.hexagonal.infrastructure.jpa.repositories.AccessTokenJpaRepository;
 import com.example.hexagonal.infrastructure.jpa.repositories.RefreshTokenJpaRepository;
+import com.example.hexagonal.infrastructure.oauth2.jwt.IssueTokenResponse;
+import com.example.hexagonal.infrastructure.oauth2.jwt.JwtProvider;
 
 import lombok.RequiredArgsConstructor;
 

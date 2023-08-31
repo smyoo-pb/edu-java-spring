@@ -1,4 +1,4 @@
-package com.example.hexagonal.infrastructure.security.handler;
+package com.example.hexagonal.infrastructure.oauth2.handler;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

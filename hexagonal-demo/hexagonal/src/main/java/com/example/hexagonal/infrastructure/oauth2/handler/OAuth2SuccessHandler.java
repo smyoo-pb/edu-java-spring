@@ -1,14 +1,13 @@
-package com.example.hexagonal.infrastructure.security.handler;
+package com.example.hexagonal.infrastructure.oauth2.handler;
 
 import java.io.IOException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import com.example.hexagonal.infrastructure.security.IssueTokenResponse;
-import com.example.hexagonal.infrastructure.security.JwtService;
-import com.example.hexagonal.infrastructure.security.PrincipalUserInfo;
+import com.example.hexagonal.infrastructure.oauth2.JwtService;
+import com.example.hexagonal.infrastructure.oauth2.PrincipalUserInfo;
+import com.example.hexagonal.infrastructure.oauth2.jwt.IssueTokenResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

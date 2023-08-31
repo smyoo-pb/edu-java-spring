@@ -8,7 +8,8 @@ package com.example.hexagonal.common.constant;
  */
 public enum AppType {
     HUMAN("human"),
-    ANIMAL("animal");
+    ANIMAL("animal"),
+    UNCHECKED(null);
 
     private final String value;
 

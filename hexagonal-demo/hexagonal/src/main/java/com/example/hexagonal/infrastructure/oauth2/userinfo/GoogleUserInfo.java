@@ -1,7 +1,10 @@
-package com.example.hexagonal.infrastructure.security.userInfo;
+package com.example.hexagonal.infrastructure.oauth2.userinfo;
 
 import java.util.Map;
 
+import com.example.hexagonal.infrastructure.oauth2.OAuth2Provider;
+
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,10 +19,16 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class GoogleUserInfo implements OAuth2UserInfo {
+
     private final String snsId;
-    private final String email;
-    private final String name;
+
+    @Nullable
     private final String app;
+
+    private final String email;
+
+    private final String name;
+
     private final Map<String, Object> attributes;
 
     @Override

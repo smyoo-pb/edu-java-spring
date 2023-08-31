@@ -1,4 +1,4 @@
-package com.example.hexagonal.infrastructure.security.userInfo;
+package com.example.hexagonal.infrastructure.oauth2;
 
 /**
  * [description]

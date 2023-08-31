@@ -1,4 +1,4 @@
-package com.example.hexagonal.common.auth;
+package com.example.hexagonal.common.auth.adapter;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 import com.example.hexagonal.common.auth.port.AuthPort;
 import com.example.hexagonal.common.error.AuthErrorCode;
 import com.example.hexagonal.common.error.AuthErrorException;
-import com.example.hexagonal.infrastructure.security.PrincipalUserInfo;
+import com.example.hexagonal.infrastructure.oauth2.PrincipalUserInfo;
+
 import lombok.RequiredArgsConstructor;
 
 /**

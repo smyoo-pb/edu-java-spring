@@ -1,8 +1,6 @@
-package com.example.hexagonal.infrastructure.security;
+package com.example.hexagonal.infrastructure.oauth2.jwt;
 
-import com.example.hexagonal.infrastructure.security.userInfo.OAuth2Provider;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

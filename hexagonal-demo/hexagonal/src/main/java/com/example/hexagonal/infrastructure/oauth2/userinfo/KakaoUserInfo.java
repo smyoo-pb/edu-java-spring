@@ -1,6 +1,10 @@
-package com.example.hexagonal.infrastructure.security.userInfo;
+package com.example.hexagonal.infrastructure.oauth2.userinfo;
 
 import java.util.Map;
+
+import com.example.hexagonal.infrastructure.oauth2.OAuth2Provider;
+
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,10 +19,16 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class KakaoUserInfo implements OAuth2UserInfo {
+
     private final String email;
+
     private final String name;
+
     private final String snsId;
+
+    @Nullable
     private final String app;
+
     private final Map<String, Object> attributes;
 
     @Override

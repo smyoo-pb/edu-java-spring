@@ -1,9 +1,10 @@
-package com.example.hexagonal.infrastructure.security.userInfo;
+package com.example.hexagonal.infrastructure.oauth2.userinfo;
 
 import java.util.Map;
 
+import com.example.hexagonal.infrastructure.oauth2.OAuth2Provider;
+import com.example.hexagonal.infrastructure.oauth2.exception.NotSupportProviderException;
 import com.example.hexagonal.common.constant.AppType;
-import com.example.hexagonal.infrastructure.security.exception.NotSupportProviderException;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -30,31 +31,28 @@ public class OAuth2Attributes {
     public static OAuth2Attributes of(String registrationId, String userNameAttributeName,
             Map<String, Object> attributes) {
         String[] registration = registrationId.split("-");
-        String provider = null;
-        String appType = null;
-        if (registration.length == 1) {
-            provider = registration[0];
-            appType = AppType.HUMAN.getValue();
-        } else {
-            provider = registration[0];
-            appType = AppType.ANIMAL.getValue();
+        String provider = registration[0];
+        String app = AppType.UNCHECKED.getValue();
+
+        if (registration.length > 1) {
+            app = registration[1];
         }
 
         if ("naver".equals(provider)) {
             var naver = ofNaver("id", attributes);
             naver.provider = provider;
-            naver.app = appType;
+            naver.app = app;
             return naver;
         } else if ("kakao".equals(provider)) {
             var kakao = ofKakao("id", attributes);
             kakao.provider = provider;
-            kakao.app = appType;
+            kakao.app = app;
             return kakao;
         }
 
         var google = ofGoogle(userNameAttributeName, attributes);
         google.provider = provider;
-        google.app = appType;
+        google.app = app;
         return google;
     }
 
@@ -97,13 +95,13 @@ public class OAuth2Attributes {
     public OAuth2UserInfo toUserInfo() {
         try {
             OAuth2Provider provider = OAuth2Provider.of(this.provider);
-            log.debug(provider.getId());
             switch (provider) {
                 case GOOGLE:
                     return GoogleUserInfo.builder()
                             .app(app)
                             .email(email)
                             .snsId(id)
+                            .name(name)
                             .attributes(attributes)
                             .build();
                 case KAKAO:

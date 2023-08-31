@@ -1,6 +1,8 @@
-package com.example.hexagonal.infrastructure.security.userInfo;
+package com.example.hexagonal.infrastructure.oauth2.userinfo;
 
 import java.util.Map;
+
+import com.example.hexagonal.infrastructure.oauth2.OAuth2Provider;
 
 /**
  * [description]
@@ -11,13 +13,13 @@ import java.util.Map;
 public interface OAuth2UserInfo {
     String getSnsId();
 
+    String getApp();
+
     OAuth2Provider getProvider();
 
     String getEmail();
 
     String getName();
-
-    String getApp();
 
     Map<String, Object> getAttributes();
 }

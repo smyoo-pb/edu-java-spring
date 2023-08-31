@@ -1,4 +1,4 @@
-package com.example.hexagonal.infrastructure.security;
+package com.example.hexagonal.infrastructure.oauth2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,8 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.example.hexagonal.infrastructure.security.handler.OAuth2FailureHandler;
-import com.example.hexagonal.infrastructure.security.handler.OAuth2SuccessHandler;
+import com.example.hexagonal.infrastructure.oauth2.handler.OAuth2FailureHandler;
+import com.example.hexagonal.infrastructure.oauth2.handler.OAuth2SuccessHandler;
 
 import lombok.RequiredArgsConstructor;
 
