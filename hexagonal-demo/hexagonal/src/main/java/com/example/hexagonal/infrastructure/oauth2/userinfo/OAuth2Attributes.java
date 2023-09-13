@@ -8,7 +8,6 @@ import com.example.hexagonal.common.constant.AppType;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * [description]
@@ -18,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Getter
 @Builder
-@Slf4j
 public class OAuth2Attributes {
     private Map<String, Object> attributes;
     private String id;
@@ -56,40 +54,32 @@ public class OAuth2Attributes {
         return google;
     }
 
-    private static OAuth2Attributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
-        return OAuth2Attributes.builder()
-                .id((String) attributes.get("sub"))
-                .name((String) attributes.get("name"))
-                .email((String) attributes.get("email"))
-                .attributes(attributes)
-                .nameAttributeKey(userNameAttributeName)
-                .build();
+    private static OAuth2Attributes ofGoogle(String userNameAttributeName,
+            Map<String, Object> attributes) {
+        return OAuth2Attributes.builder().id((String) attributes.get("sub"))
+                .name((String) attributes.get("name")).email((String) attributes.get("email"))
+                .attributes(attributes).nameAttributeKey(userNameAttributeName).build();
     }
 
     @SuppressWarnings("unchecked")
-    private static OAuth2Attributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
+    private static OAuth2Attributes ofNaver(String userNameAttributeName,
+            Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
-        return OAuth2Attributes.builder()
-                .id((String) response.get("id"))
-                .name((String) response.get("name"))
-                .email((String) response.get("email"))
-                .attributes(response)
-                .nameAttributeKey(userNameAttributeName)
-                .build();
+        return OAuth2Attributes.builder().id((String) response.get("id"))
+                .name((String) response.get("name")).email((String) response.get("email"))
+                .attributes(response).nameAttributeKey(userNameAttributeName).build();
 
     }
 
     @SuppressWarnings("unchecked")
-    private static OAuth2Attributes ofKakao(String userNameAttributeName, Map<String, Object> attributes) {
+    private static OAuth2Attributes ofKakao(String userNameAttributeName,
+            Map<String, Object> attributes) {
         Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
         Map<String, Object> kakaoProfile = (Map<String, Object>) kakaoAccount.get("profile");
-        return OAuth2Attributes.builder()
-                .id((String) kakaoAccount.get("id"))
+        return OAuth2Attributes.builder().id((String) kakaoAccount.get("id"))
                 .name((String) kakaoProfile.get("nickname"))
-                .email((String) kakaoAccount.get("email"))
-                .attributes(kakaoAccount)
-                .nameAttributeKey(userNameAttributeName)
-                .build();
+                .email((String) kakaoAccount.get("email")).attributes(kakaoAccount)
+                .nameAttributeKey(userNameAttributeName).build();
     }
 
     public OAuth2UserInfo toUserInfo() {
@@ -97,29 +87,14 @@ public class OAuth2Attributes {
             OAuth2Provider provider = OAuth2Provider.of(this.provider);
             switch (provider) {
                 case GOOGLE:
-                    return GoogleUserInfo.builder()
-                            .app(app)
-                            .email(email)
-                            .snsId(id)
-                            .name(name)
-                            .attributes(attributes)
-                            .build();
+                    return GoogleUserInfo.builder().app(app).email(email).snsId(id).name(name)
+                            .attributes(attributes).build();
                 case KAKAO:
-                    return KakaoUserInfo.builder()
-                            .app(app)
-                            .email(email)
-                            .snsId(id)
-                            .name(name)
-                            .attributes(attributes)
-                            .build();
+                    return KakaoUserInfo.builder().app(app).email(email).snsId(id).name(name)
+                            .attributes(attributes).build();
                 case NAVER:
-                    return NaverUserInfo.builder()
-                            .app(app)
-                            .email(email)
-                            .snsId(id)
-                            .name(name)
-                            .attributes(attributes)
-                            .build();
+                    return NaverUserInfo.builder().app(app).email(email).snsId(id).name(name)
+                            .attributes(attributes).build();
                 default:
                     throw new NotSupportProviderException(this.provider);
             }

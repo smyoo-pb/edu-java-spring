@@ -4,6 +4,13 @@
             "type": "java",
             "name": "RestfulWebServicesApplication",
             "request": "launch",
+            "mainClass": "RestfulWebServicesApplication",
+            "projectName": "restful-web-services"
+        },
+        {
+            "type": "java",
+            "name": "RestfulWebServicesApplication",
+            "request": "launch",
             "mainClass": "com.precisionbio.restfulwebservices.RestfulWebServicesApplication",
             "projectName": "restful-web-services"
         },

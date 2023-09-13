@@ -132,8 +132,6 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
     -   getMessage() 메서드를 통해 essage.properties 파일에 지정한 키 값으로 i18n 메시지를 가져올 수 있다.
 -   Accept-Language 헤더를 사용
 
-<<<<<<< HEAD
-
 ### Versioning REST API
 
 -   URL Versioning - Twitter
@@ -207,3 +205,125 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
 -   현재 애플리케이션에 구현된 API들을 조회할 수 있다.
 
 ## JPA Hibernate + H2 연동
+
+### 설정
+
+-   application.properties 파일을 통한 설정
+
+    -   spring.h2.console.enabled=true
+        -   h2 콘솔 활성화
+    -   spring.datasource.url=jdbc:h2:mem:testdb
+        -   h2 inmemory db 연결
+
+-   entity 설정
+    -   @Entity 어노테이션 활용
+        -   기본적으로 테이블이 자동으로 생성된다.
+    -   spring.jpa.defer-datasource-initialization=true 설정을 통해 리소스 파일의 sql 실행 지연
+
+### Repository 생성
+
+-   JpaRespository 인터페이스 상속
+    -   findAll() => 모든 레코드 조회
+    -   save() => create or update
+    -   findById() => PK로 레코드 조회
+        -   리턴 타입은 Optional 사용을 하자
+        -   nullable을 구현하면서 null 체크를 할 수 있도록 유도
+    -   deleteById() => PK로 레코드 삭제
+    -   findBy{column} => 인터페이스에 해당 규칙으로 메서드를 추가하면 자동으로 해당 컬럼으로 조회 가능한 기능이 추가된다.
+
+### Entity 관계 설정
+
+-   @ManyToOne => N:1 관계
+-   @OneToMany => 1:N 관계
+
+-   fetch = FetchType.LAZY
+    -   지연 로딩
+    -   연결 관계 method를 호출하는 시점에 db에서 select
+-   fetch = FetchType.Eager => 즉시 로딩
+
+    -   해당 entity를 조회 하는 시점에 같이 관계 테이블의 데이터를 같이 조회
+    -   기본 값이다.
+
+-   @OneToMany(mappedBy = "user")
+    -   하위 관계 테이블에 매핑될 속성을 정의
+
+### 실제 SQL 쿼리 조회하기
+
+-   spring.jpa.show-sql=true 설정을 통해 실제 쿼리 로그를 출력할 수 있다.
+
+## JPA + MySQL
+
+-   소스 코드의 변경 없이 spring.datasource 들의 설정을 변경하는 것 만으로도 dbms의 변경이 가능하다.
+
+### MySQL 연결 해보기
+
+-   spring.datasource.url=jdbc:mysql://{url}:{port}/{database-name}
+-   spring.datasource.username={user}
+-   spring.datasource.password={password}
+
+## Spring Security
+
+### 기본 인증 구현
+
+#### 자동 설정
+
+-   초기 관리자 아이디 패스워드 자동 생성 및 설정 가능
+    -   spring.security.user.name
+    -   spring.security.user.password
+-   Basic Auth 인증 기능
+
+### 기본 인증 설정 개선
+
+#### Filter Chains
+
+> Spring Security의 동작 순서
+>
+> > Spring Security는 여러 Filter들을 통해 모든 http 요청에 대한 접근 제어를 한다.
+
+1. 모든 요청은 인증되어야 한다.
+2. 인증되지 않았다면 기본(로그인) 페이지로 이동 한다.
+3. CSRF 필터
+
+#### Configurations
+
+**Basic Aut 활성화 설정**
+
+```java
+
+package com.precisionbio.restfulwebservices.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import static org.springframework.security.config.Customizer.withDefaults;
+
+/**
+ * Spring Security Configuration
+ * For Basic Auth
+ * @author smyoo-pb
+ * @date 2023/09/14
+ */
+@Configuration
+public class SpringSecurityConfiguration {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // 1. 모든 요청은 인증되어야 한다.
+        // 2. 인증되지 않았다면 기본(로그인) 페이지로 이동 한다.
+        // 3. CSRF 필터
+
+        // 1)
+        http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
+
+        // 2) 기본 설정
+        // 3) 기본 설정
+
+        // Basic Auth 기본 구현체 적용
+        // 인증되지 않은 경우, HTTP Basic Auth를 통해
+        // 인증할 수 있는 팝업(브라우저에서 지원되는..)
+        http.httpBasic(withDefaults());
+
+        return http.build();
+    }
+}
+```
