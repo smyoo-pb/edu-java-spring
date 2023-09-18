@@ -166,9 +166,18 @@
   },
   "active": "4f7e6cc4b9ebeb25",
   "lastOpenFiles": [
+    "rest-api/restful-web-services/src/main/java/com/precisionbio/restfulwebservices/security/SpringSecurityConfiguration.java",
+    "rest-api/restful-web-services/src/main/java/com/precisionbio/restfulwebservices/security",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/profiles/application/exception/ForbiddenErrorException.java",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/profiles/adapter/in/rest/ProfilesController.java",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/infrastructure/oauth2/userinfo/OAuth2UserInfo.java",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/infrastructure/oauth2/userinfo/OAuth2Attributes.java",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/infrastructure/oauth2/userinfo/NaverUserInfo.java",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/infrastructure/oauth2/userinfo/KakaoUserInfo.java",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/infrastructure/oauth2/userinfo/GoogleUserInfo.java",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/infrastructure/oauth2/jwt/JwtProvider.java",
+    "hexagonal-demo/hexagonal/src/main/java/com/example/hexagonal/infrastructure/oauth2/jwt/IssueTokenResponse.java",
     "README.md",
-    "rest-api/README.md",
-    "Context/spacesLastSync.log",
-    "Context"
+    "rest-api/README.md"
   ]
 }
