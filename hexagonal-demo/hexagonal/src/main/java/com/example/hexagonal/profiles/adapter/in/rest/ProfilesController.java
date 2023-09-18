@@ -2,7 +2,6 @@ package com.example.hexagonal.profiles.adapter.in.rest;
 
 import java.net.URI;
 import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +38,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("v1/profiles")
 @RequiredArgsConstructor
-public class ProfileController {
+public class ProfilesController {
     private final ProfileCreateUseCase userCreateUseCase;
     private final ProfileFindAllQuery userFindAllQuery;
     private final ProfileFindQuery userFindQuery;

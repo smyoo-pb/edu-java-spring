@@ -1,4 +1,4 @@
-package com.example.hexagonal.infrastructure.security;
+package com.example.hexagonal.infrastructure.oauth2;
 
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -6,11 +6,12 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+
 import com.example.hexagonal.infrastructure.jpa.entities.UserJpaEntity;
 import com.example.hexagonal.infrastructure.jpa.repositories.UserJpaRepository;
-import com.example.hexagonal.infrastructure.security.userInfo.OAuth2Attributes;
-import com.example.hexagonal.infrastructure.security.userInfo.OAuth2Provider;
-import com.example.hexagonal.infrastructure.security.userInfo.OAuth2UserInfo;
+import com.example.hexagonal.infrastructure.oauth2.userinfo.OAuth2Attributes;
+import com.example.hexagonal.infrastructure.oauth2.userinfo.OAuth2UserInfo;
+
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -48,10 +49,11 @@ public class PrincipalUserService implements OAuth2UserService<OAuth2UserRequest
 		UserJpaEntity user = userRepository.findBySnsIdAndProvider(providerId, provider.getId());
 		if (user == null) {
 			user = UserJpaEntity.builder()
-					.snsId(providerId)
-					.provider(provider.getId())
 					.app(userInfo.getApp())
+					.snsId(providerId)
+					.name(userInfo.getName())
 					.email(userInfo.getEmail())
+					.provider(provider.getId())
 					.build();
 			userRepository.save(user);
 		}

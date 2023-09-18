@@ -11,5 +11,5 @@ import com.example.hexagonal.infrastructure.jpa.entities.ProfileJpaEntity;
  * @date 2023/08/30
  */
 public interface ProfileJpaRepository extends JpaRepository<ProfileJpaEntity, Long> {
-
+    boolean existsByEmail(String email);
 }

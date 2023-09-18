@@ -15,12 +15,12 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import com.example.hexagonal.common.error.CommonErrorCode;
 import com.example.hexagonal.common.error.CommonErrorException;
 import com.example.hexagonal.profiles.application.exception.AlreadyExistsProfileException;
 import com.example.hexagonal.profiles.application.exception.NotFoundProfileException;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -80,6 +80,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<ErrorResponse>(errorDetails, errorCode.getHttpStatus());
     }
 
+    @Override
+    protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex,
+            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        var errorCode = CommonErrorCode.NOT_FOUND;
+        log.error(ex.toString());
+        ErrorResponse errorDetails = new ErrorResponse(
+                LocalDateTime.now(),
+                errorCode.name(),
+                ex.getMessage());
+        return new ResponseEntity<Object>(errorDetails, errorCode.getHttpStatus());
+    }
+
     /**
      * Handles the exception of type CommonErrorException and returns a
      * ResponseEntity
@@ -97,6 +109,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 LocalDateTime.now(),
                 errorCode.name(),
                 ex.getMessage());
+
         return new ResponseEntity<ErrorResponse>(errorDetails, errorCode.getHttpStatus());
     }
 
@@ -153,7 +166,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorResponse errorDetails = new ErrorResponse(
                 LocalDateTime.now(),
                 errorCode.name(),
-                translateMessage("users.read.notFound"));
+                translateMessage("profiles.read.notFound"));
         return new ResponseEntity<ErrorResponse>(errorDetails, errorCode.getHttpStatus());
     }
 

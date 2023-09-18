@@ -9,7 +9,7 @@ package com.example.hexagonal.common.auth.port;
 public interface AuthPort {
     public Long getId();
 
-    public Long getUsername();
+    public String getName();
 
     public String getEmail();
 

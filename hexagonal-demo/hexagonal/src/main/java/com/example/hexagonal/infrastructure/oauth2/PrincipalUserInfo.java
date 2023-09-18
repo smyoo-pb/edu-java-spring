@@ -1,16 +1,15 @@
-package com.example.hexagonal.infrastructure.security;
+package com.example.hexagonal.infrastructure.oauth2;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import com.example.hexagonal.common.constant.AppType;
 import com.example.hexagonal.infrastructure.jpa.entities.UserJpaEntity;
-import com.example.hexagonal.infrastructure.security.userInfo.OAuth2UserInfo;
-
+import com.example.hexagonal.infrastructure.oauth2.userinfo.OAuth2UserInfo;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -32,10 +31,14 @@ public class PrincipalUserInfo implements UserDetails, OAuth2User {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
+
+        String app = userInfo.getApp();
+        var appType = AppType.of(app);
+
         authorities.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return "DEFAULT";
+                return appType.name();
             }
         });
 

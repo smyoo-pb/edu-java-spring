@@ -7,8 +7,10 @@ package com.example.hexagonal.common.constant;
  * @date 2023/08/31
  */
 public enum AppType {
-    HUMAN("H"),
-    ANIMAL("A");
+    ADMIN("console"),
+    HUMAN("human"),
+    ANIMAL("animal"),
+    UNDEFINED(null);
 
     private final String value;
 
@@ -18,5 +20,20 @@ public enum AppType {
 
     public String getValue() {
         return value;
+    }
+
+    public static AppType of(String value) {
+        if (value == null) {
+            return AppType.UNDEFINED;
+        }
+
+        switch (value) {
+            case "human":
+                return AppType.HUMAN;
+            case "animal":
+                return AppType.ANIMAL;
+            default:
+                return AppType.UNDEFINED;
+        }
     }
 }

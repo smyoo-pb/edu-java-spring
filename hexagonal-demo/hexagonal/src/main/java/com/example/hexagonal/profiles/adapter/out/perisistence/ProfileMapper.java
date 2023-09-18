@@ -25,13 +25,10 @@ public class ProfileMapper {
         return new Profile(
                 profileJpaEntity.getId(),
                 profileJpaEntity.getUser().getId(),
-                profileJpaEntity.getApp(),
                 profileJpaEntity.getName(),
-                profileJpaEntity.getSpecies(),
-                profileJpaEntity.getEmail(),
                 profileJpaEntity.getBirth(),
                 profileJpaEntity.getGender(),
-                profileJpaEntity.getNickname(),
+                profileJpaEntity.getEmail(),
                 profileJpaEntity.getCreatedAt(),
                 profileJpaEntity.getUpdatedAt(),
                 profileJpaEntity.getDeletedAt());

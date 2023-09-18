@@ -1,14 +1,16 @@
-package com.example.hexagonal.infrastructure.security.handler;
+package com.example.hexagonal.infrastructure.oauth2.handler;
 
 import java.io.IOException;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import com.example.hexagonal.infrastructure.security.IssueTokenResponse;
-import com.example.hexagonal.infrastructure.security.JwtService;
-import com.example.hexagonal.infrastructure.security.PrincipalUserInfo;
+import com.example.hexagonal.infrastructure.oauth2.JwtService;
+import com.example.hexagonal.infrastructure.oauth2.PrincipalUserInfo;
+import com.example.hexagonal.infrastructure.oauth2.jwt.IssueTokenResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +51,9 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
     private void issueToken(HttpServletResponse response, PrincipalUserInfo oAuth2User) throws IOException {
         IssueTokenResponse issueTokenResponse = jwtService.issueToken(oAuth2User);
         String jsonBody = objectMapper.writeValueAsString(issueTokenResponse);
+
+        response.setHeader("Content-Type", "application/json");
+        response.setStatus(HttpStatus.CREATED.value());
         response.getWriter().write(jsonBody);
     }
 }

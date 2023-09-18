@@ -1,4 +1,4 @@
-package com.example.hexagonal.infrastructure.security.exception;
+package com.example.hexagonal.infrastructure.oauth2.exception;
 
 /**
  * [description]

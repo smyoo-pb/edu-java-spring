@@ -1,4 +1,4 @@
-package com.example.hexagonal.common.jwt;
+package com.example.hexagonal.infrastructure.oauth2.jwt;
 
 import java.util.Date;
 import java.util.Optional;
