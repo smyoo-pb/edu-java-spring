@@ -132,8 +132,6 @@ url: /users/{id}/todos/{id} => /users/1/todos/1
     -   getMessage() 메서드를 통해 essage.properties 파일에 지정한 키 값으로 i18n 메시지를 가져올 수 있다.
 -   Accept-Language 헤더를 사용
 
-<<<<<<< HEAD
-
 ### Versioning REST API
 
 -   URL Versioning - Twitter
