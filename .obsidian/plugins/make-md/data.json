@@ -42,7 +42,8 @@
   "expandedSpaces": [
     "/",
     null,
-    "edu-java-spring"
+    "edu-java-spring",
+    null
   ],
   "expandFolderOnClick": true,
   "openFolders": [],
